@@ -1,5 +1,5 @@
-LMSPlayer
-=========
+Artwork
+=======
 
 .. NOTE::
 
