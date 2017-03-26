@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LMSPlayer &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="index.html"/>
+        <link rel="up" title="Module documentation" href="modules.html"/>
+        <link rel="next" title="Callback Server" href="callback.html"/>
+        <link rel="prev" title="LMSServer" href="server.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="server.html">LMSServer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LMSPlayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callback Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menus.html">Squeezeplayer Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tags.html">Server command tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Module documentation</a> &raquo;</li>
+        
+      <li>LMSPlayer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/player.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-LMSTools.player">
+<span id="lmsplayer"></span><h1>LMSPlayer<a class="headerlink" href="#module-LMSTools.player" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="LMSTools.player.LMSPlayer">
+<em class="property">class </em><code class="descclassname">LMSTools.player.</code><code class="descname">LMSPlayer</code><span class="sig-paren">(</span><em>ref</em>, <em>server</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The LMSPlayer class represents an individual squeeze player connected to
+your Logitech Media Server.</p>
+<p>Instances of this class are generated from the LMSServer object and it is
+not expected that you would create an instance directly. However, it is
+posible to create instances directly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">LMSServer</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get player instance with MAC address of player</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">LMSPlayer</span><span class="p">(</span><span class="s2">&quot;12:34:56:78:90:AB&quot;</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+
+<span class="c1"># Get player based on index of player on server</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">LMSPlayer</span><span class="o">.</span><span class="n">from_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Upon intialisation, basic information about the player is retrieved from the
+server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player = LMSPlayer(&quot;12:34:56:78:90:AB&quot;, server)</span>
+<span class="go">&gt;&gt;&gt;player.name</span>
+<span class="go">u&#39;Living Room&#39;</span>
+<span class="go">&gt;&gt;&gt;player.model</span>
+<span class="go">u&#39;squeezelite&#39;</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>seconds=10</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds</strong> (<em>int</em><em>, </em><em>float</em>) &#8211; number of seconds to jump forwards in current track.</td>
+</tr>
+</tbody>
+</table>
+<p>Jump forward in current track. Number of seconds will be converted to integer.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="LMSTools.player.LMSPlayer.from_index">
+<em class="property">classmethod </em><code class="descname">from_index</code><span class="sig-paren">(</span><em>index</em>, <em>server</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.from_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of LMSPlayer when the MAC address of the player is unknown.</p>
+<p>This class method uses the index of the player (as registered on the server) to identify the player.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#LMSTools.player.LMSPlayer" title="LMSTools.player.LMSPlayer">LMSPlayer</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of squeezeplayer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.get_synced_players">
+<code class="descname">get_synced_players</code><span class="sig-paren">(</span><em>refs_only=False</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.get_synced_players" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve list of players synced to current player.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>refs_only</strong> (<em>bool</em>) &#8211; whether the method should return list of MAC         references or list of LMSPlayer instances.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.mode">
+<code class="descname">mode</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.mode" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, unicode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">curent mode (e.g. &#8220;play&#8221;, &#8220;pause&#8221;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.model">
+<code class="descname">model</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.model" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, unicode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">model name of the current player.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.mute">
+<code class="descname">mute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.mute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mute player</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.muted">
+<code class="descname">muted</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.muted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Muting</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">retrieve current muting status</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if muted, False if not.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">set muting status (True = muted)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.name">
+<code class="descname">name</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Player name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">retrieve name of player</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">unicode, str</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">name of player</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">update name of player on server</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;p.name</span>
+<span class="go">u&quot;elParaguayo&#39;s Laptop&quot;</span>
+<span class="go">&gt;&gt;&gt;p.name = &quot;New name&quot;</span>
+<span class="go">&gt;&gt;&gt;p.name</span>
+<span class="go">&#39;New name&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.next">
+<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play next item in playlist</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.parse_request">
+<code class="descname">parse_request</code><span class="sig-paren">(</span><em>command</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.parse_request" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>command</strong> (<em>str</em><em>, </em><em>list</em>) &#8211; command to be sent to server</li>
+<li><strong>key</strong> (<em>str</em>) &#8211; key to retrieve desired info from JSON response</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">value from JSON response</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Send the request and extract the info from the JSON response.</p>
+<p>This is the same as player.request(command).get(key)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.pause">
+<code class="descname">pause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause the player. This does not unpause the player if already paused.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.percentage_elapsed">
+<code class="descname">percentage_elapsed</code><span class="sig-paren">(</span><em>upper=100</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.percentage_elapsed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>upper</strong> (<em>float</em><em>, </em><em>int</em>) &#8211; (optional) scale - returned value is between 0 and upper (default 100)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current percentage elapsed</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.percentage_elapsed()</span>
+<span class="go">29.784033576552005</span>
+<span class="go">&gt;&gt;&gt;p.percentage_elapsed(upper=1)</span>
+<span class="go">0.31738374576051237</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.play">
+<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start playing the current item</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_add">
+<code class="descname">playlist_add</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add item to playlist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<em>str</em>) &#8211; link to playable item</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_clear">
+<code class="descname">playlist_clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the entire playlist. Will also stop the player.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_delete">
+<code class="descname">playlist_delete</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete item</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<em>str</em>) &#8211; link to playable item</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_erase">
+<code class="descname">playlist_erase</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove item from playlist by index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> &#8211; index of item to delete</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_get_current_detail">
+<code class="descname">playlist_get_current_detail</code><span class="sig-paren">(</span><em>amount=None</em>, <em>taglist=None</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_get_current_detail" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>amount</strong> (<em>int</em>) &#8211; number of tracks to query</li>
+<li><strong>taglist</strong> (<em>list</em>) &#8211; list of tags (NEED LINK)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">server result</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If amount is None, all remaining tracks will be displayed.</p>
+<p>If not taglist is provided, the default list is:
+[tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.playlist_get_current_detail(amount=1)</span>
+<span class="go">[{u&#39;album&#39;: u&#39;Jake Bugg&#39;,</span>
+<span class="go">  u&#39;artist&#39;: u&#39;Jake Bugg&#39;,</span>
+<span class="go">  u&#39;artwork_url&#39;: u&#39;https://i.scdn.co/image/6ba50b26867613b100281669ff1a917c5a020534&#39;,</span>
+<span class="go">  u&#39;coverart&#39;: u&#39;0&#39;,</span>
+<span class="go">  u&#39;coverid&#39;: u&#39;-161090728&#39;,</span>
+<span class="go">  u&#39;duration&#39;: u&#39;144&#39;,</span>
+<span class="go">  u&#39;id&#39;: u&#39;-161090728&#39;,</span>
+<span class="go">  u&#39;playlist index&#39;: 7,</span>
+<span class="go">  u&#39;remote&#39;: 1,</span>
+<span class="go">  u&#39;title&#39;: u&#39;Lightning Bolt&#39;}]</span>
+<span class="go">&gt;&gt;&gt;player.playlist_get_current_detail(amount=1, taglist=[tags.DURATION])</span>
+<span class="go">[{u&#39;duration&#39;: u&#39;144&#39;,</span>
+<span class="go">  u&#39;id&#39;: u&#39;-161090728&#39;,</span>
+<span class="go">  u&#39;playlist index&#39;: 7,</span>
+<span class="go">  u&#39;title&#39;: u&#39;Lightning Bolt&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_get_detail">
+<code class="descname">playlist_get_detail</code><span class="sig-paren">(</span><em>start=None</em>, <em>amount=None</em>, <em>taglist=None</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_get_detail" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start</strong> (<em>int</em>) &#8211; playlist index of first track to query</li>
+<li><strong>amount</strong> (<em>int</em>) &#8211; number of tracks to query</li>
+<li><strong>taglist</strong> (<em>list</em>) &#8211; list of tags (NEED LINK)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">server result</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If start is None, results will start with the first track in the playlist.</p>
+<p>If amount is None, all playlist tracks will be returned.</p>
+<p>If not taglist is provided, the default list is:
+[tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.playlist_get_detail(start=1, amount=1, taglist=[tags.URL])</span>
+<span class="go">[{u&#39;id&#39;: u&#39;-137990288&#39;,</span>
+<span class="go"> u&#39;playlist index&#39;: 1,</span>
+<span class="go"> u&#39;title&#39;: u&quot;Mardy Bum by Arctic Monkeys from Whatever People Say I Am, That&#39;s What I&#39;m Not&quot;,</span>
+<span class="go"> u&#39;url&#39;: u&#39;spotify://track:2fyIS6GXMgUcSv4oejx63f&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_get_info">
+<code class="descname">playlist_get_info</code><span class="sig-paren">(</span><em>taglist=None</em>, <em>start=None</em>, <em>amount=None</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_get_info" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start</strong> (<em>int</em>) &#8211; playlist index of first track to query</li>
+<li><strong>amount</strong> (<em>int</em>) &#8211; number of tracks to query</li>
+<li><strong>taglist</strong> (<em>list</em>) &#8211; list of tags (NEED LINK)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">server result</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If start is None, results will start with the first track in the playlist.</p>
+<p>If amount is None, all playlist tracks will be returned.</p>
+<p>Unlike playlist_get_detail, no default taglist is provided.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.playlist_get_info(start=1, amount=1)</span>
+<span class="go">[{u&#39;id&#39;: u&#39;-137990288&#39;,</span>
+<span class="go">  u&#39;playlist index&#39;: 1,</span>
+<span class="go">  u&#39;title&#39;: u&#39;Mardy Bum&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_insert">
+<code class="descname">playlist_insert</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert item into playlist (after current track)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<em>str</em>) &#8211; link to playable item</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_move">
+<code class="descname">playlist_move</code><span class="sig-paren">(</span><em>from_index</em>, <em>to_index</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move items in playlist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>from_index</strong> (<em>int</em>) &#8211; index of item to move</li>
+<li><strong>to_index</strong> (<em>int</em>) &#8211; new playlist position</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_play">
+<code class="descname">playlist_play</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play item</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<em>str</em>) &#8211; link to playable item</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.playlist_play_index">
+<code class="descname">playlist_play_index</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_play_index" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>int</em>) &#8211; index of playlist track to play (zero-based index)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.playlist_position">
+<code class="descname">playlist_position</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.playlist_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">position of current track in playlist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.prev">
+<code class="descname">prev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.prev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play previous item in playlist</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.request" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>command</strong> (<em>str</em><em>, </em><em>list</em>) &#8211; command to be sent to server</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">JSON response received from server</td>
+</tr>
+</tbody>
+</table>
+<p>Send the request to the server.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.rewind">
+<code class="descname">rewind</code><span class="sig-paren">(</span><em>seconds=10</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.rewind" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds</strong> (<em>int</em><em>, </em><em>float</em>) &#8211; number of seconds to jump backwards in current track.</td>
+</tr>
+</tbody>
+</table>
+<p>Jump backwards in current track. Number of seconds will be converted to integer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.seek_to">
+<code class="descname">seek_to</code><span class="sig-paren">(</span><em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.seek_to" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds</strong> (<em>int</em><em>, </em><em>float</em>) &#8211; position (in seconds) that player should seek to</td>
+</tr>
+</tbody>
+</table>
+<p>Move player to specified position in current playlist item</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the player</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.sync">
+<code class="descname">sync</code><span class="sig-paren">(</span><em>player=None</em>, <em>ref=None</em>, <em>index=None</em>, <em>master=True</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.sync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronise squeezeplayers</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>player</strong> (<a class="reference internal" href="#LMSTools.player.LMSPlayer" title="LMSTools.player.LMSPlayer"><em>LMSPlayer</em></a>) &#8211; Instance of player</li>
+<li><strong>ref</strong> (<em>str</em>) &#8211; MAC address of player</li>
+<li><strong>index</strong> (<em>int</em>) &#8211; server index of squeezeplayer</li>
+<li><strong>master</strong> (<em>bool</em>) &#8211; whether current player should be the master player in         sync group</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LMSPlayerError</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You must provide one of player, ref or index otherwise an exception         will be raised. If master is set to True then you must provide either         player or ref.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.time_elapsed">
+<code class="descname">time_elapsed</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.time_elapsed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">elapsed time in seconds. Returns 0.0 if an exception is encountered.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.time_remaining">
+<code class="descname">time_remaining</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.time_remaining" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">remaining time in seconds. Returns 0.0 if an exception is encountered.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.toggle">
+<code class="descname">toggle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play/Pause Toggle</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_album">
+<code class="descname">track_album</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_album" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode, str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">name of album for current playlist item</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.track_album</span>
+<span class="go">u&#39;Kiasmos&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_artist">
+<code class="descname">track_artist</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_artist" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode, str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">name of artist for current playlist item</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.track_artist</span>
+<span class="go">u&#39;Kiasmos&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_count">
+<code class="descname">track_count</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">number of tracks in playlist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_duration">
+<code class="descname">track_duration</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_duration" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">duration of track in seconds</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.track_duration</span>
+<span class="go">384.809</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_elapsed_and_duration">
+<code class="descname">track_elapsed_and_duration</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_elapsed_and_duration" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple (float, float)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuple of elapsed time and track duration</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.track_elapsed_and_duration</span>
+<span class="go">(4.86446976280212, 384.809)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.track_title">
+<code class="descname">track_title</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.track_title" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode, str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">name of track for current playlist item</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.track_artist</span>
+<span class="go">u&#39;Lit&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.unmute">
+<code class="descname">unmute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.unmute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unmute player</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.unpause">
+<code class="descname">unpause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.unpause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpause the player.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.unsync">
+<code class="descname">unsync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.unsync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove player from syncgroup.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve some basic info about the player.</p>
+<p>Retrieves the name, model and ip attributes. This method is called on initialisation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.volume">
+<code class="descname">volume</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Volume information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current volume</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current volume</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">change volume</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;player.volume</span>
+<span class="go">95</span>
+<span class="go">&gt;&gt;&gt;player.volume = 50</span>
+</pre></div>
+</div>
+<p>Min: 0, Max: 100</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.volume_down">
+<code class="descname">volume_down</code><span class="sig-paren">(</span><em>interval=5</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.volume_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decrease volume</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interval</strong> (<em>int</em>) &#8211; amount to decrease volume (default 5)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.player.LMSPlayer.volume_up">
+<code class="descname">volume_up</code><span class="sig-paren">(</span><em>interval=5</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.player.LMSPlayer.volume_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increase volume</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interval</strong> (<em>int</em>) &#8211; amount to increase volume (default 5)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.player.LMSPlayer.wifi_signal_strength">
+<code class="descname">wifi_signal_strength</code><a class="headerlink" href="#LMSTools.player.LMSPlayer.wifi_signal_strength" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Wifi signal strength</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="callback.html" class="btn btn-neutral float-right" title="Callback Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="server.html" class="btn btn-neutral" title="LMSServer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

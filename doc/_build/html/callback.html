@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Callback Server &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="index.html"/>
+        <link rel="up" title="Module documentation" href="modules.html"/>
+        <link rel="next" title="Squeezeplayer Menus" href="menus.html"/>
+        <link rel="prev" title="LMSPlayer" href="player.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="server.html">LMSServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="player.html">LMSPlayer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Callback Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menus.html">Squeezeplayer Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tags.html">Server command tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Module documentation</a> &raquo;</li>
+        
+      <li>Callback Server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/callback.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-LMSTools.callbackserver">
+<span id="callback-server"></span><h1>Callback Server<a class="headerlink" href="#module-LMSTools.callbackserver" title="Permalink to this headline">¶</a></h1>
+<p>An asynchronous client that listens to messages broadcast by the server.</p>
+<p>The client also accepts callback functions.</p>
+<p>The client subclasses python threading so methods are built-in to the class
+object.</p>
+<p>Callbacks can be configured in two different ways:</p>
+<ol class="arabic simple">
+<li>Using decorators</li>
+<li>Using the &#8216;add_callback&#8217; method</li>
+</ol>
+<p><strong>Decorators</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">squeeze</span> <span class="o">=</span> <span class="n">LMSCallbackServer</span><span class="p">()</span>
+
+<span class="nd">@squeeze.event</span><span class="p">(</span><span class="n">squeeze</span><span class="o">.</span><span class="n">VOLUME_CHANGE</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">volume_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Volume event received: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<span class="n">squeeze</span><span class="o">.</span><span class="n">set_server</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+<span class="n">squeeze</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are using decorators inside a class then this will happen before your
+class has been initialised so you need to provide the callback server with a
+reference to the class instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">squeeze</span> <span class="o">=</span> <span class="n">LMSCallbackServer</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">squeeze</span> <span class="o">=</span> <span class="n">squeeze</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">squeeze</span><span class="o">.</span><span class="n">set_server</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="n">parent_class</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">squeeze</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="nd">@squeeze.event</span><span class="p">(</span><span class="n">squeeze</span><span class="o">.</span><span class="n">VOLUME_CHANGE</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">volume_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;Volume event received: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Multiple events can be added with multiple decorators</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@squeeze.event</span><span class="p">(</span><span class="n">squeeze</span><span class="o">.</span><span class="n">VOLUME_CHANGE</span><span class="p">)</span>
+<span class="nd">@squeeze.event</span><span class="p">(</span><span class="n">squeeze</span><span class="o">.</span><span class="n">PLAY_PAUSE</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">generic_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Event received: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or by passing events as a list</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@squeeze.event</span><span class="p">([</span><span class="n">squeeze</span><span class="o">.</span><span class="n">VOLUME_CHANGE</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">.</span><span class="n">PLAY_PAUSE</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">generic_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Event received: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Using &#8216;add_callback&#8217; method</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">volume_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Volume event received: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<span class="n">squeeze</span> <span class="o">=</span> <span class="n">LMSCallbackServer</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+<span class="n">squeeze</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="n">squeeze</span><span class="o">.</span><span class="n">VOLUME_CHANGE</span><span class="p">,</span> <span class="n">volume_event</span><span class="p">)</span>
+<span class="n">squeeze</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="LMSTools.callbackserver.LMSCallbackServer">
+<em class="property">class </em><code class="descclassname">LMSTools.callbackserver.</code><code class="descname">LMSCallbackServer</code><span class="sig-paren">(</span><em>hostname=None</em>, <em>port=9090</em>, <em>username=''</em>, <em>password=''</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.callbackserver.LMSCallbackServer" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hostname</strong> (<em>str</em>) &#8211; (optional) ip address/name of the server (excluding &#8220;<a class="reference external" href="http://">http://</a>&#8221; prefix)</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; (optional) port on which the telent interface is running (default 9090)</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; (optional) username for access on telnet port</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; (optional) password for access on telnet port</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the class is initialised without the hostname parameter then the
+&#8220;set_server&#8221; method must be called before starting the server otherwise a
+CallbackServerError will be raised.</p>
+<p><strong>Events</strong></p>
+<p>The following events are currently define in the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Const MIXER_ALL:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures all mixer events</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const VOLUME_CHANGE:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures volume events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const PLAYLIST_ALL:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures all playlist events</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const PLAY_PAUSE:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures play/pause events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const PLAY:</th><td class="field-body">Captures play event</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const PAUSE:</th><td class="field-body">Captures pause event</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const PLAYLIST_OPEN:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures playlist open event</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const PLAYLIST_CHANGE_TRACK:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures track changes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const PLAYLIST_LOAD_TRACKS:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures loadtracks event</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const PLAYLIST_ADD_TRACKS:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures addtracks event</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const PLAYLIST_LOADED:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures &#8220;playlist load_done&#8221; event</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const PLAYLIST_REMOVE:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures &#8220;playlist delete&#8221; event</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const PLAYLIST_CLEAR:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures playlist clear event</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const PLAYLIST_CHANGED:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures PLAYLIST_LOAD_TRACKS, PLAYLIST_LOADED, PLAYLIST_ADD_TRACKS, PLAYLIST_REMOVE, PLAYLIST_CLEAR</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const CLIENT_ALL:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures all client events</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const CLIENT_NEW:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures new client events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const CLIENT_DISCONNECT:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures client disconnect events</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const CLIENT_RECONNECT:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Captures client reconnect events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const CLIENT_FORGET:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Captures client forget events</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const SYNC:</th><td class="field-body">Captures sync events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const SERVER_ERROR:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Custom event for server errors</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const SERVER_CONNECT:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Custom event for server connection</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="LMSTools.callbackserver.LMSCallbackServer.add_callback">
+<code class="descname">add_callback</code><span class="sig-paren">(</span><em>event</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.callbackserver.LMSCallbackServer.add_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a callback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> (<em>event</em>) &#8211; Event type</li>
+<li><strong>callback</strong> (<em>function/method</em>) &#8211; Reference to the function/method to be called if matching event is received. The function/method must accept one parmeter which is the event string.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.callbackserver.LMSCallbackServer.remove_callback">
+<code class="descname">remove_callback</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.callbackserver.LMSCallbackServer.remove_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a callback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>event</em>) &#8211; Event type</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.callbackserver.LMSCallbackServer.set_server">
+<code class="descname">set_server</code><span class="sig-paren">(</span><em>hostname</em>, <em>port=9090</em>, <em>username=''</em>, <em>password=''</em>, <em>parent_class=None</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.callbackserver.LMSCallbackServer.set_server" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hostname</strong> (<em>str</em>) &#8211; (required) ip address/name of the server (excluding &#8220;<a class="reference external" href="http://">http://</a>&#8221; prefix)</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; (optional) port on which the telent interface is running (default 9090)</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; (optional) username for access on telnet port</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; (optional) password for access on telnet port</li>
+<li><strong>parent_class</strong> (<em>object</em>) &#8211; (optional) reference to a class instance. Required where decorators have been used on class methods prior to initialising the class.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Provide details of the server if not provided when the class is
+initialised (e.g. if you are using decorators to define callbacks).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.callbackserver.LMSCallbackServer.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.callbackserver.LMSCallbackServer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the callack server thread.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="menus.html" class="btn btn-neutral float-right" title="Squeezeplayer Menus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="player.html" class="btn btn-neutral" title="LMSPlayer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

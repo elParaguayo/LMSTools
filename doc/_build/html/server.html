@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LMSServer &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="index.html"/>
+        <link rel="up" title="Module documentation" href="modules.html"/>
+        <link rel="next" title="LMSPlayer" href="player.html"/>
+        <link rel="prev" title="Module documentation" href="modules.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LMSServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="player.html">LMSPlayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callback Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menus.html">Squeezeplayer Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tags.html">Server command tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Module documentation</a> &raquo;</li>
+        
+      <li>LMSServer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/server.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-LMSTools.server">
+<span id="lmsserver"></span><h1>LMSServer<a class="headerlink" href="#module-LMSTools.server" title="Permalink to this headline">¶</a></h1>
+<p>Simple python class definitions for interacting with Logitech Media Server.
+This code uses the JSON interface.</p>
+<dl class="class">
+<dt id="LMSTools.server.LMSServer">
+<em class="property">class </em><code class="descclassname">LMSTools.server.</code><code class="descname">LMSServer</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=9000</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> (<em>str</em>) &#8211; address of LMS server (default &#8220;localhost&#8221;)</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; port for the web interface (default 9000)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Class for Logitech Media Server.
+Provides access via JSON interface. As the class uses the JSON interface, no active connections are maintained.</p>
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.get_player_count">
+<code class="descname">get_player_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.get_player_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">number of connected players</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.get_player_count()</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.get_players">
+<code class="descname">get_players</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.get_players" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of LMSPlayer instances</td>
+</tr>
+</tbody>
+</table>
+<p>Return a list of currently connected Squeezeplayers.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.get_players()</span>
+<span class="go">[LMSPlayer: Living Room (40:40:40:40:40:40),</span>
+<span class="go"> LMSPlayer: PiRadio (41:41:41:41:41:41),</span>
+<span class="go"> LMSPlayer: elParaguayo&#39;s Laptop (42:42:42:42:42:42)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.get_sync_groups">
+<code class="descname">get_sync_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.get_sync_groups" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of syncgroups. Each group is a list of references of the members.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.get_sync_groups()</span>
+<span class="go">[[u&#39;40:40:40:40:40:40&#39;, u&#39;41:41:41:41:41:41&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.ping">
+<code class="descname">ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.ping" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if server is alive, False if server is unreachable</td>
+</tr>
+</tbody>
+</table>
+<p>Method to test if server is active.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.ping()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>player='-'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.request" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>player</strong> (<em></em><em>(</em><em>str</em><em>)</em><em></em>) &#8211; MAC address of a connected player. Alternatively, &#8220;-&#8221; can be used for server level requests.</li>
+<li><strong>params</strong> (<em></em><em>(</em><em>str</em><em>, </em><em>list</em><em>)</em><em></em>) &#8211; Request command</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.rescan">
+<code class="descname">rescan</code><span class="sig-paren">(</span><em>mode='fast'</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.rescan" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>str</em>) &#8211; Mode can be &#8216;fast&#8217; for update changes on library, &#8216;full&#8217; for complete library scan and &#8216;playlists&#8217; for playlists scan only</td>
+</tr>
+</tbody>
+</table>
+<p>Trigger rescan of the media library.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.server.LMSServer.rescanprogress">
+<code class="descname">rescanprogress</code><a class="headerlink" href="#LMSTools.server.LMSServer.rescanprogress" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Attr rescanprogress:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">current rescan progress</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.show_players_sync_status">
+<code class="descname">show_players_sync_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.show_players_sync_status" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dictionary (see attributes below)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Attr group_count:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(int) Number of sync groups</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Attr player_count:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">(int) Number of connected players</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Attr players:</th><td class="field-body">(list) List of players (see below)</td>
+</tr>
+</tbody>
+</table>
+<p>Player object (dict)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attr name:</th><td class="field-body">Name of player</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Attr ref:</th><td class="field-body">Player reference</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Attr sync_index:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Index of sync group (-1 if not synced)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.show_players_sync_status()</span>
+<span class="go">{&#39;group_count&#39;: 1,</span>
+<span class="go"> &#39;player_count&#39;: 3,</span>
+<span class="go"> &#39;players&#39;: [{&#39;name&#39;: u&#39;Living Room&#39;,</span>
+<span class="go">              &#39;ref&#39;: u&#39;40:40:40:40:40:40&#39;,</span>
+<span class="go">              &#39;sync_index&#39;: 0},</span>
+<span class="go">              {&#39;name&#39;: u&#39;PiRadio&#39;,</span>
+<span class="go">              &#39;ref&#39;: u&#39;41:41:41:41:41:41&#39;,</span>
+<span class="go">              &#39;sync_index&#39;: 0},</span>
+<span class="go">              {&#39;name&#39;: u&quot;elParaguayo&#39;s Laptop&quot;,</span>
+<span class="go">              &#39;ref&#39;: u&#39;42:42:42:42:42:42&#39;,</span>
+<span class="go">              &#39;sync_index&#39;: -1}]}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LMSTools.server.LMSServer.sync">
+<code class="descname">sync</code><span class="sig-paren">(</span><em>master</em>, <em>slave</em><span class="sig-paren">)</span><a class="headerlink" href="#LMSTools.server.LMSServer.sync" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>master</strong> (<em></em><em>(</em><em>ref</em><em>)</em><em></em>) &#8211; Reference of the player to which you wish to sync another player</li>
+<li><strong>slave</strong> (<em></em><em>(</em><em>ref</em><em>)</em><em></em>) &#8211; Reference of the player which you wish to sync to the master</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Sync squeezeplayers.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="LMSTools.server.LMSServer.version">
+<code class="descname">version</code><a class="headerlink" href="#LMSTools.server.LMSServer.version" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attr version:</th><td class="field-body">Version number of server Software</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.version</span>
+<span class="go">u&#39;7.9.0&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="player.html" class="btn btn-neutral float-right" title="LMSPlayer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Module documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

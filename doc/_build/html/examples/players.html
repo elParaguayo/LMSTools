@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Controlling/querying your squeezeplayer &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Examples" href="../examples.html"/>
+        <link rel="next" title="Using the callbackserver" href="callbacks.html"/>
+        <link rel="prev" title="Starting out" href="start.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="start.html">Starting out</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Controlling/querying your squeezeplayer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#retrieving-players">Retrieving players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-the-player">Controlling the player</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changing-volume">Changing volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#syncing-players">Syncing players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-tracks-to-the-playlist">Adding tracks to the playlist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-metadata">Getting metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#and-more">...and more</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">Using the callbackserver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menus.html">Generating player menus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+        
+      <li>Controlling/querying your squeezeplayer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/players.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="controlling-querying-your-squeezeplayer">
+<span id="player-example"></span><h1>Controlling/querying your squeezeplayer<a class="headerlink" href="#controlling-querying-your-squeezeplayer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="retrieving-players">
+<h2>Retrieving players<a class="headerlink" href="#retrieving-players" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve got your server, you&#8217;ll want to get your players next.</p>
+<p>It&#8217;s easy to get the list of the players currently attached to your server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LMSTools</span> <span class="kn">import</span> <span class="n">LMSServer</span>
+
+<span class="c1"># Define your server address</span>
+<span class="n">SERVER_IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.1&quot;</span>
+
+<span class="c1"># create the server object</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">LMSServer</span><span class="p">(</span><span class="n">SERVER_IP</span><span class="p">)</span>
+
+<span class="c1"># get the attached players</span>
+<span class="n">players</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_players</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Each item in &#8216;players&#8217; will be a <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer" title="LMSTools.player.LMSPlayer"><code class="xref py py-class docutils literal"><span class="pre">LMSPlayer</span></code></a> instance and should be easily identifiable by printing the output of the list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;server.get_players()</span>
+<span class="go">[LMSPlayer: Living Room (40:40:40:40:40:40),</span>
+<span class="go"> LMSPlayer: PiRadio (41:41:41:41:41:41),</span>
+<span class="go"> LMSPlayer: elParaguayo&#39;s Laptop (42:42:42:42:42:42)]</span>
+<span class="go">&gt;&gt;&gt;laptop = server.get_players()[2]</span>
+<span class="go">&gt;&gt;&gt;Laptop</span>
+<span class="go">LMSPlayer: elParaguayo&#39;s Laptop (42:42:42:42:42:42)</span>
+</pre></div>
+</div>
+<p>So, now you&#8217;ve got your player, what can you do with it?</p>
+</div>
+<div class="section" id="controlling-the-player">
+<h2>Controlling the player<a class="headerlink" href="#controlling-the-player" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s easy to do simple manipulation of the playlist.</p>
+<p>The player has methods to <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.play" title="LMSTools.player.LMSPlayer.play"><code class="xref py py-func docutils literal"><span class="pre">play</span></code></a>, <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.pause" title="LMSTools.player.LMSPlayer.pause"><code class="xref py py-func docutils literal"><span class="pre">pause</span></code></a> and skip tracks.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;laptop.play()</span>
+<span class="go">&gt;&gt;&gt;laptop.next()</span>
+<span class="go">&gt;&gt;&gt;laptop.stop()</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-volume">
+<h2>Changing volume<a class="headerlink" href="#changing-volume" title="Permalink to this headline">¶</a></h2>
+<p>Players have a <code class="xref py py-attr docutils literal"><span class="pre">volume</span> <span class="pre">&lt;LMSTools.player.LMSPlayer.volume</span></code> property. This can be used to retrieve the current volume level and adjust it. In addition there are <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.volume_up" title="LMSTools.player.LMSPlayer.volume_up"><code class="xref py py-func docutils literal"><span class="pre">volume_up</span></code></a> and <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.volume_down" title="LMSTools.player.LMSPlayer.volume_down"><code class="xref py py-func docutils literal"><span class="pre">volume_down</span></code></a> methods.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;# Get the volume level</span>
+<span class="go">&gt;&gt;&gt;laptop.volume</span>
+<span class="go">75</span>
+<span class="go">&gt;&gt;&gt;laptop.volume_down()</span>
+<span class="go">&gt;&gt;&gt;laptop.volume</span>
+<span class="go">70</span>
+<span class="go">&gt;&gt;&gt;laptop.volume_down(10)</span>
+<span class="go">&gt;&gt;&gt;laptop.volume</span>
+<span class="go">60</span>
+<span class="go">&gt;&gt;&gt;laptop.volume = 90</span>
+<span class="go">&gt;&gt;&gt;laptop.volume</span>
+<span class="go">90</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="syncing-players">
+<h2>Syncing players<a class="headerlink" href="#syncing-players" title="Permalink to this headline">¶</a></h2>
+<p>You can sync and unsync players easily.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;livingroom = server.get_players()[0]</span>
+<span class="go">&gt;&gt;&gt;livingroom</span>
+<span class="go">LMSPlayer: Living Room (40:40:40:40:40:40</span>
+<span class="go">&gt;&gt;&gt;laptop.sync(livingroom)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>You can confirm which players are synced with your player:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;laptop.get_synced_players()</span>
+<span class="go">[LMSPlayer: Living Room (40:40:40:40:40:40]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>If there are multiple sync groups then you can view members by using the <a class="reference internal" href="../server.html#LMSTools.server.LMSServer.show_players_sync_status" title="LMSTools.server.LMSServer.show_players_sync_status"><code class="xref py py-func docutils literal"><span class="pre">show_players_sync_status</span></code></a> method.</p>
+</div>
+<div class="section" id="adding-tracks-to-the-playlist">
+<h2>Adding tracks to the playlist<a class="headerlink" href="#adding-tracks-to-the-playlist" title="Permalink to this headline">¶</a></h2>
+<p>If you have a path to a playable item, these can be added to the playlist directly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;# You can use spotify urls if the app is installed</span>
+<span class="go">&gt;&gt;&gt;laptop.playlist_play(&quot;spotify://track:5xYZXIgVAND5sWjN8G0hID&quot;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_insert" title="LMSTools.player.LMSPlayer.playlist_insert"><code class="xref py py-func docutils literal"><span class="pre">playlist_insert</span></code></a> and <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_add" title="LMSTools.player.LMSPlayer.playlist_add"><code class="xref py py-func docutils literal"><span class="pre">playlist_add</span></code></a> methods can be used to place tracks at different locations in the playlist (i.e. next and last) while <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_delete" title="LMSTools.player.LMSPlayer.playlist_delete"><code class="xref py py-func docutils literal"><span class="pre">playlist_delete</span></code></a> can be used to remove tracks.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;laptop.playlist_delete(&quot;spotify://track:5xYZXIgVAND5sWjN8G0hID&quot;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-metadata">
+<span id="player-metadata"></span><h2>Getting metadata<a class="headerlink" href="#getting-metadata" title="Permalink to this headline">¶</a></h2>
+<p>In case you don&#8217;t know what&#8217;s actually playing at the moment, you can retrieve metadata about the track (and other items in the playlist).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;laptop.track_title</span>
+<span class="go">u&#39;Go!&#39;</span>
+<span class="go">&gt;&gt;&gt;laptop.track_artist</span>
+<span class="go">u&#39;Public Service Broadcasting&#39;</span>
+<span class="go">&gt;&gt;&gt;laptop.track_album</span>
+<span class="go">u&#39;The Race For Space&#39;</span>
+</pre></div>
+</div>
+<p>If you want to query the playlist, there are a number of options open to you. See: <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_get_info" title="LMSTools.player.LMSPlayer.playlist_get_info"><code class="xref py py-func docutils literal"><span class="pre">playlist_get_info</span></code></a>, <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_get_detail" title="LMSTools.player.LMSPlayer.playlist_get_detail"><code class="xref py py-func docutils literal"><span class="pre">playlist_get_detail</span></code></a> and <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer.playlist_get_current_detail" title="LMSTools.player.LMSPlayer.playlist_get_current_detail"><code class="xref py py-func docutils literal"><span class="pre">playlist_get_current_detail</span></code></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;laptop.playlist_get_current_detail()</span>
+<span class="go">[{u&#39;album&#39;: u&#39;The Race For Space&#39;,</span>
+<span class="go">  u&#39;artist&#39;: u&#39;Public Service Broadcasting&#39;,</span>
+<span class="go">  u&#39;coverart&#39;: u&#39;0&#39;,</span>
+<span class="go">  u&#39;coverid&#39;: u&#39;-186029800&#39;,</span>
+<span class="go">  u&#39;duration&#39;: u&#39;252&#39;,</span>
+<span class="go">  u&#39;id&#39;: u&#39;-186029800&#39;,</span>
+<span class="go">  u&#39;playlist index&#39;: 0,</span>
+<span class="go">  u&#39;remote&#39;: 1,</span>
+<span class="go">  u&#39;title&#39;: u&#39;Go!&#39;}]</span>
+</pre></div>
+</div>
+<p>Additional information can be requested by using <a class="reference internal" href="../tags.html#LMSTools.tags.LMSTags" title="LMSTools.tags.LMSTags"><code class="xref py py-class docutils literal"><span class="pre">tags</span></code></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;from LMSTools import LMSTags as tags</span>
+<span class="go">&gt;&gt;&gt;laptop.playlist_get_current_detail(taglist=[tags.DURATION, tags.CONTENT_TYPE])</span>
+<span class="go">[{u&#39;duration&#39;: u&#39;252&#39;,</span>
+<span class="go">  u&#39;id&#39;: u&#39;-186029800&#39;,</span>
+<span class="go">  u&#39;playlist index&#39;: 0,</span>
+<span class="go">  u&#39;title&#39;: u&#39;Go!&#39;,</span>
+<span class="go">  u&#39;type&#39;: u&#39;Ogg Vorbis (Spotify)&#39;}]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="and-more">
+<h2>...and more<a class="headerlink" href="#and-more" title="Permalink to this headline">¶</a></h2>
+<p>See the class documentation for <a class="reference internal" href="../player.html#LMSTools.player.LMSPlayer" title="LMSTools.player.LMSPlayer"><code class="xref py py-class docutils literal"><span class="pre">LMSPlayer</span></code></a> for further information on available properties and methods.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="callbacks.html" class="btn btn-neutral float-right" title="Using the callbackserver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="start.html" class="btn btn-neutral" title="Starting out" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

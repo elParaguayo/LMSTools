@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Server command tags &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="index.html"/>
+        <link rel="up" title="Module documentation" href="modules.html"/>
+        <link rel="next" title="Contributing" href="contributing.html"/>
+        <link rel="prev" title="Squeezeplayer Menus" href="menus.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="server.html">LMSServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="player.html">LMSPlayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callback Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menus.html">Squeezeplayer Menus</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Server command tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Module documentation</a> &raquo;</li>
+        
+      <li>Server command tags</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tags.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-LMSTools.tags">
+<span id="server-command-tags"></span><h1>Server command tags<a class="headerlink" href="#module-LMSTools.tags" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="LMSTools.tags.LMSTags">
+<em class="property">class </em><code class="descclassname">LMSTools.tags.</code><code class="descname">LMSTags</code><a class="headerlink" href="#LMSTools.tags.LMSTags" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Const ARTIST:</th><td class="field-body">Artist name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const ALBUM_ID:</th><td class="field-body">Album ID. Only if known.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const ALBUM_REPLAY_GAIN:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Replay gain of the album (in dB), if any</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const ALBUM:</th><td class="field-body">Album name. Only if known.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const ARTIST_ID:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Artist ID.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const ARTIST_ROLE_IDS:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">For each role as defined above, the list of ids.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const ARTIST_ROLE:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">a comma separated list of names.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const ARTWORK_TRACK_ID:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Identifier of the album track used by the server to display the album&#8217;s artwork. Not listed if artwork is not available for this album.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const ARTWORK_URL:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">A full URL to remote artwork. Only available for certain plugins such as Pandora and Rhapsody.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const BITRATE:</th><td class="field-body">Song bitrate. Only if known.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const BPM:</th><td class="field-body">Beats per minute. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const BUTTONS:</th><td class="field-body">A hash with button definitions. Only available for certain plugins such as Pandora.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const COMMENT:</th><td class="field-body">Song comments, if any.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const COMPILATION:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">1 if the album this track belongs to is a compilation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const CONTENT_TYPE:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Content type. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const COVERART:</th><td class="field-body">1 if coverart is available for this song. Not listed otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const COVERID:</th><td class="field-body">coverid to use when constructing an artwork URL, such as /music/$coverid/cover.jpg</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const DISC_COUNT:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Number of discs. Only if known.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const DISC:</th><td class="field-body">Disc number. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const DURATION:</th><td class="field-body">Song duration in seconds.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const FILESIZE:</th><td class="field-body">Song file length in bytes. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const GENRE_ID_LIST:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Genre IDs, separated by commas (only useful if the server is set to handle multiple items in tags).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const GENRE_ID:</th><td class="field-body">Genre ID. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const GENRE_LIST:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Genre names, separated by commas (only useful if the server is set to handle multiple items in tags).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const GENRE:</th><td class="field-body">Genre name. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const INFO_LINK:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">A custom link to use for trackinfo. Only available for certain plugins such as Pandora.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const LYRICS:</th><td class="field-body">Lyrics. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const MODIFICATION_TIME:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Date and time song file was last changed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const MUSICMAGIC_MIXABLE:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">1 if track is mixable, otherwise 0.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const RATING:</th><td class="field-body">Song rating, if known and greater than 0.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const REMOTE_TITLE:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Title of the internet radio station.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const REMOTE:</th><td class="field-body">If 1, this is a remote track.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const REPLAY_GAIN:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Replay gain (in dB), if any</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const SAMPLERATE:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Song sample rate (in KHz)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const SAMPLESIZE:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Song sample size (in bits)</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Const TAG_VERSION:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Version of tag information in song file. Only if known.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Const TRACK_NUMBER:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Track number. Only if known.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Const URL:</th><td class="field-body">Song file url.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Const YEAR:</th><td class="field-body">Song year. Only if known.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="menus.html" class="btn btn-neutral" title="Squeezeplayer Menus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

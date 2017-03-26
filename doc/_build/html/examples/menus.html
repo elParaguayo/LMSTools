@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Generating player menus &mdash; LMSTools 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="LMSTools 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Examples" href="../examples.html"/>
+        <link rel="next" title="Module documentation" href="../modules.html"/>
+        <link rel="prev" title="Using the callbackserver" href="callbacks.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LMSTools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="start.html">Starting out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="players.html">Controlling/querying your squeezeplayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">Using the callbackserver</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generating player menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-menu-system">Understanding the menu system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-menu-handler">Creating a menu handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-a-menu">Generating a menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-menus">Custom menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigating-the-menu">Navigating the menu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#next-menu-items">Next Menu items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#playlist-menu-items">Playlist Menu items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio-menu-items">Audio Menu items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-menu-items">Search Menu items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LMSTools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+        
+      <li>Generating player menus</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/menus.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="generating-player-menus">
+<h1>Generating player menus<a class="headerlink" href="#generating-player-menus" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="../menus.html#LMSTools.menu.LMSMenuHandler" title="LMSTools.menu.LMSMenuHandler"><code class="xref py py-class docutils literal"><span class="pre">LMSMenuHandler</span></code></a> class allows you to generate squeezeplayer menus on the fly. This will allow you to create your own interfaces in your applications.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This code is a work in progress and may therefore lack some of the functionality that you may encounter on more &#8216;professional&#8217; applications.</p>
+<p class="last">If there is some functionality that is missing (or the code otherwise works in unexpected ways) then please notify me in the <a class="reference external" href="https://github.com/elParaguayo/LMSTools/issues">GitHub issues tracker</a>.</p>
+</div>
+<div class="section" id="understanding-the-menu-system">
+<h2>Understanding the menu system<a class="headerlink" href="#understanding-the-menu-system" title="Permalink to this headline">¶</a></h2>
+<p>Menus are provided by the server as JSON objects. At their most basic, they provide text, icon path and the relevant command to be executed.</p>
+<p>This library currently categorises each menu item into one of four types:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../menus.html#LMSTools.menuitems.NextMenuItem" title="LMSTools.menuitems.NextMenuItem"><code class="xref py py-class docutils literal"><span class="pre">NextMenuItem</span></code></a>: a menu item which just provides an additional submenu;</li>
+<li><a class="reference internal" href="../menus.html#LMSTools.menuitems.PlaylistMenuItem" title="LMSTools.menuitems.PlaylistMenuItem"><code class="xref py py-class docutils literal"><span class="pre">PlaylistMenuItem</span></code></a>: a menu item which can be played/added to playlist or can provide a subsequent menu showing the tracks in the playlist;</li>
+<li><a class="reference internal" href="../menus.html#LMSTools.menuitems.AudioMenuItem" title="LMSTools.menuitems.AudioMenuItem"><code class="xref py py-class docutils literal"><span class="pre">AudioMenuItem</span></code></a>: a menu item which can be played/added to playlist; and</li>
+<li><a class="reference internal" href="../menus.html#LMSTools.menuitems.SearchMenuItem" title="LMSTools.menuitems.SearchMenuItem"><code class="xref py py-class docutils literal"><span class="pre">SearchMenuItem</span></code></a>: a menu item which requires user input before providing results.</li>
+</ul>
+<p>The use of these different menu types is set out further below.</p>
+</div>
+<div class="section" id="creating-a-menu-handler">
+<h2>Creating a menu handler<a class="headerlink" href="#creating-a-menu-handler" title="Permalink to this headline">¶</a></h2>
+<p>The menu handler is currently included as a separate class. As the menus are specific to each player, the menu handler must have information about the player for which the menu is being requested.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;from LMSTools import LMSServer, LMSMenuHandler</span>
+<span class="go">&gt;&gt;&gt;server = LMSServer(&quot;192.168.0.1&quot;)</span>
+<span class="go">&gt;&gt;&gt;laptop = server.get_players()[1]</span>
+<span class="go">&gt;&gt;&gt;handler = LMSMenuHandler(laptop)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>If you wish to create a menu for a different player then you can change the current player as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;livingroom = server.get_players()[0]</span>
+<span class="go">&gt;&gt;&gt;handler.changePlayer(livingroom)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generating-a-menu">
+<h2>Generating a menu<a class="headerlink" href="#generating-a-menu" title="Permalink to this headline">¶</a></h2>
+<p>To simplify the process of creating a menu, the menu handler has a a built infunction to retrieve the home menu: <a class="reference internal" href="../menus.html#LMSTools.menu.LMSMenuHandler.getHomeMenu" title="LMSTools.menu.LMSMenuHandler.getHomeMenu"><code class="xref py py-func docutils literal"><span class="pre">getHomeMenu</span> </code></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;home = handler.getHomeMenu()</span>
+<span class="go">&gt;&gt;&gt;home</span>
+<span class="go">[&lt;LMSTools.menuitems.NextMenuItem at 0x7f049a0de490&gt;,</span>
+<span class="go"> &lt;LMSTools.menuitems.NextMenuItem at 0x7f049a0de450&gt;,</span>
+<span class="go"> &lt;LMSTools.menuitems.NextMenuItem at 0x7f049a0de9d0&gt;,</span>
+<span class="go"> &lt;LMSTools.menuitems.NextMenuItem at 0x7f049a0de510&gt;,</span>
+<span class="go"> # etc.</span>
+<span class="go"> ]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-menus">
+<h2>Custom menus<a class="headerlink" href="#custom-menus" title="Permalink to this headline">¶</a></h2>
+<p>As you can see from the above, the default home menu is very large and may be unwieldy for your own application.</p>
+<p>As a result, you may want to define your own menu and have the menu handler process this menu.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CUSTOM_MENU</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;item_loop&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;myMusic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Artists&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;browselibrary&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;artists&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;role_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ALBUMARTIST,ARTIST,BAND,COMPOSER,CONDUCTOR,TRACKARTIST&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;html/images/artists.png&quot;</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;myMusic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Albums&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;browselibrary&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;albums&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;myMusicAlbums&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;html/images/albums.png&quot;</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;myMusic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Playlists&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;html/images/playlists.png&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;browselibrary&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;playlists&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+         <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;myMusic&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Search&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;html/images/search.png&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;browselibrary&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;search&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;home&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;titleStyle&quot;</span><span class="p">:</span> <span class="s2">&quot;album&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;icon-id&quot;</span><span class="p">:</span> <span class="s2">&quot;plugins/MyApps/html/images/icon.png&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;My Apps&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;player&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;myapps&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;menu&quot;</span><span class="p">:</span> <span class="s2">&quot;myapps&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
+    <span class="p">}</span>
+
+<span class="n">menu</span> <span class="o">=</span> <span class="n">LMSMenuHandler</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">getCustomMenu</span><span class="p">(</span><span class="n">CUSTOM_MENU</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">cmd</span>
+</pre></div>
+</div>
+<p>should output the following</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Artists</span> <span class="p">[</span><span class="s1">&#39;browselibrary&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;menu:1&#39;</span><span class="p">,</span> <span class="s1">&#39;mode:artists&#39;</span><span class="p">,</span> <span class="s1">&#39;role_id:ALBUMARTIST,ARTIST,BAND,COMPOSER,CONDUCTOR,TRACKARTIST&#39;</span><span class="p">]</span>
+<span class="n">Albums</span> <span class="p">[</span><span class="s1">&#39;browselibrary&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;menu:1&#39;</span><span class="p">,</span> <span class="s1">&#39;mode:albums&#39;</span><span class="p">]</span>
+<span class="n">Playlists</span> <span class="p">[</span><span class="s1">&#39;browselibrary&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;menu:1&#39;</span><span class="p">,</span> <span class="s1">&#39;mode:playlists&#39;</span><span class="p">]</span>
+<span class="n">Search</span> <span class="p">[</span><span class="s1">&#39;browselibrary&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;menu:1&#39;</span><span class="p">,</span> <span class="s1">&#39;mode:search&#39;</span><span class="p">]</span>
+<span class="n">My</span> <span class="n">Apps</span> <span class="p">[</span><span class="s1">&#39;myapps&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;menu:myapps&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="navigating-the-menu">
+<h2>Navigating the menu<a class="headerlink" href="#navigating-the-menu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="next-menu-items">
+<h3>Next Menu items<a class="headerlink" href="#next-menu-items" title="Permalink to this headline">¶</a></h3>
+<p>NextMenuItems&#8217; purpose is to take the user to another menu. The object therefore provides the necessary command required to generate the next menu:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;next = home[0]</span>
+<span class="go">&gt;&gt;&gt;menu = handler.getMenu(next.go())</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="playlist-menu-items">
+<h3>Playlist Menu items<a class="headerlink" href="#playlist-menu-items" title="Permalink to this headline">¶</a></h3>
+<p>In addition to providing a submenu (i.e. a list of the tracks in the playlist) a playlist meny item can be played/added to the queue.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;# Assume this is a playlist menu item!</span>
+<span class="go">&gt;&gt;&gt;playlist = home[0]</span>
+<span class="go">&gt;&gt;&gt;playlist.play()</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../menus.html#LMSTools.menuitems.PlaylistMenuItem" title="LMSTools.menuitems.PlaylistMenuItem"><code class="xref py py-class docutils literal"><span class="pre">PlaylistMenuItem</span></code></a> class documentation for more information.</p>
+</div>
+<div class="section" id="audio-menu-items">
+<h3>Audio Menu items<a class="headerlink" href="#audio-menu-items" title="Permalink to this headline">¶</a></h3>
+<p>These behave the same as Playlist Menu items (with the exception that they don&#8217;t provide a submenu of playable tracks).</p>
+</div>
+<div class="section" id="search-menu-items">
+<h3>Search Menu items<a class="headerlink" href="#search-menu-items" title="Permalink to this headline">¶</a></h3>
+<p>These items require user input to deliver tailored responses.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;# Assume this is a search menu item!</span>
+<span class="go">&gt;&gt;&gt;searchitem = home[0]</span>
+<span class="go">&gt;&gt;&gt;cmd = searchitem.search(&quot;My search term&quot;)</span>
+<span class="go">&gt;&gt;&gt;results = handler.getMenu(cmd)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modules.html" class="btn btn-neutral float-right" title="Module documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="callbacks.html" class="btn btn-neutral" title="Using the callbackserver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, elParaguayo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
