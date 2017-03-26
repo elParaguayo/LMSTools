@@ -6,4 +6,4 @@ A python library for iteracting with your Logitech Media Server.
 Documentation
 -------------
 
-Coming soon...
+Please see http://http://lmstools.readthedocs.io
