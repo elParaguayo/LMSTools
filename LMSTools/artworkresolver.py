@@ -1,91 +1,73 @@
 from urllib import urlencode
 
-class ArtworkResolver(object):
-    """Class object to help provide an easy way of obtaining a URL to a
-       playlist item.
-
-       The class is capable of working out the appropriate path depending on
-       whether the file is remote or local.
-
-       A default image path can also be provided. If none is provided, this
-       will fall back to the LMS default image.
+class LMSArtworkResolver(object):
     """
-    def __init__(self, host="localhost", port=9000, default=None):
+    Class object to help provide an easy way of obtaining a URL to a playlist item.
+
+    The class is capable of working out the appropriate path depending on \
+    whether the file is remote or local.
+
+    :type host:str
+    :param host:address of the server
+    :type port:int
+    :param port:webport of the server (default 9000)
+    """
+
+    def __init__(self, host="localhost", port=9000):
         self.host = host
         self.port = port
 
-        # Custom plugins may use a different image format
-        # Set up some methods to handle them
-        self.methods = {"spotifyimage": self.__spotify_url,
-                        "imageproxy/spotify:image:": self.__spotify_url}
-
         # Set up the template for local artwork
-        #self.localart = "http://{host}:{port}/music/{coverid}/cover.jpg"
-        self.localart = "http://{host}:{port}/music/{coverid}/cover_500x500_p.png"
+        base = "http://{host}:{port}".format(host=self.host, port=self.port)
+        self.localart = base + "/music/{coverid}/cover_{h}x{w}_p.png"
 
-        # Set the default path for missing artwork
-        if default is not None:
-            self.default = default
-        else:
-            self.default = self.localart.format(host=self.host,
-                                                port=self.port,
-                                                coverid=0)
-
-        # Prefix for remote artwork
-        self.prefix = "http://www.mysqueezebox.com/public/imageproxy?{data}"
+        self.default = self.localart
 
     def __getRemoteURL(self, track, size):
         # Check whether there's a URL for remote artworl
         art = track.get("artwork_url", False)
 
+        h, w = size
+
         # If there is, build the link.
         if art:
-            for k in self.methods:
-                if art.startswith(k):
-                    return self.methods[k](art)
 
-            h, w = size
-            data= {"h": h,
-                   "w": w,
-                   "u": art}
-            #return self.prefix.format(data=urlencode(data))
-            return track.get("artwork_url", self.default)
+            return track.get("artwork_url")
 
         # If not, return the fallback image
         else:
-            return track.get("artwork_url", self.default)
+            return self.default.format(coverid=0, h=h, w=w)
 
-    def __getLocalURL(self, track):
+    def __getLocalURL(self, track, size):
         # Check if local cover art is available
         coverart = track.get("coverart", False)
+
+        h, w = size
 
         # If so, build the link
         if coverart:
 
-            return self.localart.format(host=self.host,
-                                        port=self.port,
+            return self.localart.format(h=h,
+                                        w=w,
                                         coverid=track["coverid"])
 
         # If not, return the fallback image
         else:
-            return self.default
-
-    def __spotify_url(self, art):
-        """Spotify images (using Triode's plugin) are provided on the locaizil
-           server.
-        """
-        return "http://{host}:{port}/{art}".format(host=self.host,
-                                                   port=self.port,
-                                                   art=art)
+            return self.default.format(h=h,
+                                        w=w,
+                                        coverid=0)
 
     def getURL(self, track, size=(500, 500)):
-        """Method for generating link to artwork for the selected track.
+        """
+        Method for generating link to artwork for the selected track.
 
-          'track' is a dict object which must contain the "remote", "coverid"
-          and "coverart" tags as returned by the server.
+        :type track:dict
+        :param track:a dict object which must contain the "remote", "coverid" \
+        and "coverart" tags as returned by the server.
 
-          'size' is an optional parameter which can be used when creting links
-          for remotely hosted images.
+        :type size:tuple
+        :param size:optional parameter which can be used when creating links \
+        for local images. Default (500, 500).
         """
 
         # List of required keys
@@ -110,4 +92,4 @@ class ArtworkResolver(object):
 
         # or it's a local file, so let's get the link
         else:
-            return self.__getLocalURL(track)
+            return self.__getLocalURL(track, size)

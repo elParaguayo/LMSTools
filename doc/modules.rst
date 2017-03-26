@@ -9,3 +9,4 @@ Module documentation
    callback
    menus
    tags
+   artwork
