@@ -7,10 +7,10 @@ class LMSArtworkResolver(object):
     The class is capable of working out the appropriate path depending on \
     whether the file is remote or local.
 
-    :type host:str
-    :param host:address of the server
-    :type port:int
-    :param port:webport of the server (default 9000)
+    :type host: str
+    :param host: address of the server
+    :type port: int
+    :param port: webport of the server (default 9000)
     """
 
     def __init__(self, host="localhost", port=9000):
@@ -24,7 +24,7 @@ class LMSArtworkResolver(object):
         self.default = self.localart
 
     def __getRemoteURL(self, track, size):
-        # Check whether there's a URL for remote artworl
+        # Check whether there's a URL for remote artwork
         art = track.get("artwork_url", False)
 
         h, w = size
@@ -61,12 +61,12 @@ class LMSArtworkResolver(object):
         """
         Method for generating link to artwork for the selected track.
 
-        :type track:dict
-        :param track:a dict object which must contain the "remote", "coverid" \
+        :type track: dict
+        :param track: a dict object which must contain the "remote", "coverid" \
         and "coverart" tags as returned by the server.
 
-        :type size:tuple
-        :param size:optional parameter which can be used when creating links \
+        :type size: tuple
+        :param size: optional parameter which can be used when creating links \
         for local images. Default (500, 500).
         """
 
