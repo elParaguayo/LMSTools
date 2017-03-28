@@ -142,7 +142,7 @@ metadata about the track (and other items in the playlist).
     u'The Race For Space'
 
 You can attempt to get a URL for the current track's artwork via the \
-:attr:`track_artwork <LMSTools.player.LMSPlayer.track_artwork` property.
+:attr:`track_artwork <LMSTools.player.LMSPlayer.track_artwork>` property.
 
 If you want to query the playlist, there are a number of options open to you. \
 See: :func:`playlist_get_info <LMSTools.player.LMSPlayer.playlist_get_info>`, \
