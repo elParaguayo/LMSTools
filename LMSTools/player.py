@@ -4,6 +4,7 @@
 #
 # This set of tools was inspired by the PyLMS library.
 
+from artworkresolver import LMSArtworkResolver
 from tags import LMSTags as tags
 from utils import LMSUtils
 
@@ -56,14 +57,17 @@ class LMSPlayer(LMSUtils):
         self._name = None
         self._model = None
         self._ip = None
+        self._art = LMSArtworkResolver.from_server(self.server)
         self.update()
 
     @classmethod
     def from_index(cls, index, server):
         """
-        Create an instance of LMSPlayer when the MAC address of the player is unknown.
+        Create an instance of LMSPlayer when the MAC address of the player is \
+        unknown.
 
-        This class method uses the index of the player (as registered on the server) to identify the player.
+        This class method uses the index of the player (as registered on the \
+        server) to identify the player.
 
         :rtype: LMSPlayer
         :returns: Instance of squeezeplayer
@@ -90,7 +94,8 @@ class LMSPlayer(LMSUtils):
         """
         Retrieve some basic info about the player.
 
-        Retrieves the name, model and ip attributes. This method is called on initialisation.
+        Retrieves the name, model and ip attributes. This method is called on \
+        initialisation.
         """
         self._name = self.name
         self._model = self.parse_request("player model ?", "_model")
@@ -129,7 +134,9 @@ class LMSPlayer(LMSUtils):
         self.request("stop")
 
     def pause(self):
-        """Pause the player. This does not unpause the player if already paused."""
+        """
+        Pause the player. This does not unpause the player if already paused.
+        """
         self.request("pause 1")
 
     def unpause(self):
@@ -173,7 +180,8 @@ class LMSPlayer(LMSUtils):
         :type seconds: int, float
         :param seconds: number of seconds to jump forwards in current track.
 
-        Jump forward in current track. Number of seconds will be converted to integer.
+        Jump forward in current track. Number of seconds will be converted to \
+        integer.
         """
         try:
             seconds = int(seconds)
@@ -186,7 +194,8 @@ class LMSPlayer(LMSUtils):
         :type seconds: int, float
         :param seconds: number of seconds to jump backwards in current track.
 
-        Jump backwards in current track. Number of seconds will be converted to integer.
+        Jump backwards in current track. Number of seconds will be converted to \
+        integer.
         """
         try:
             seconds = int(seconds)
@@ -356,10 +365,27 @@ class LMSPlayer(LMSUtils):
 
         return elapsed, duration
 
+    @property
+    def track_artwork(self):
+        """
+        Get URL for current track artwork
+
+        :rtype: str
+        :returns: url to artwork if available. Returns empty string if no URL.
+        """
+        track = self.playlist_get_current_detail(amount=1)
+        art = str(self._art.getURL(track[0]))
+
+        if self._art.is_default(art):
+            return ""
+        else:
+            return art
+
     def percentage_elapsed(self, upper=100):
         """
         :type upper: float, int
-        :param upper: (optional) scale - returned value is between 0 and upper (default 100)
+        :param upper: (optional) scale - returned value is between 0 and upper \
+        (default 100)
         :rtype: float
         :returns: current percentage elapsed
 
@@ -381,7 +407,8 @@ class LMSPlayer(LMSUtils):
     def time_elapsed(self):
         """
         :rtype: float
-        :returns: elapsed time in seconds. Returns 0.0 if an exception is encountered.
+        :returns: elapsed time in seconds. Returns 0.0 if an exception is \
+        encountered.
 
         """
         try:
@@ -395,7 +422,8 @@ class LMSPlayer(LMSUtils):
     def time_remaining(self):
         """
         :rtype: float
-        :returns: remaining time in seconds. Returns 0.0 if an exception is encountered.
+        :returns: remaining time in seconds. Returns 0.0 if an exception is \
+        encountered.
 
         """
         try:
@@ -435,19 +463,23 @@ class LMSPlayer(LMSUtils):
         except:
             return 0
 
-    def playlist_get_current_detail(self, amount=None, taglist=None):
+    def playlist_get_current_detail(self, amount=None, taglist=None,
+                                    local_art=True):
         """
         :type amount: int
         :param amount: number of tracks to query
         :type taglist: list
         :param taglist: list of tags (NEED LINK)
+        :type local_art: bool
+        :param local_art: generate URL for local tracks
         :rtype: list
         :returns: server result
 
         If amount is None, all remaining tracks will be displayed.
 
         If not taglist is provided, the default list is:
-        [tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]
+        [tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, \
+        tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]
 
         ::
 
@@ -473,9 +505,11 @@ class LMSPlayer(LMSUtils):
             taglist = DETAILED_TAGS
         return self.playlist_get_info(start=self.playlist_position,
                                       amount=amount,
-                                      taglist=taglist)
+                                      taglist=taglist,
+                                      local_art=local_art)
 
-    def playlist_get_detail(self, start=None, amount=None, taglist=None):
+    def playlist_get_detail(self, start=None, amount=None, taglist=None,
+                            local_art=True):
         """
         :type start: int
         :param start: playlist index of first track to query
@@ -483,6 +517,8 @@ class LMSPlayer(LMSUtils):
         :param amount: number of tracks to query
         :type taglist: list
         :param taglist: list of tags (NEED LINK)
+        :type local_art: bool
+        :param local_art: generate URL for local tracks
         :rtype: list
         :returns: server result
 
@@ -491,7 +527,8 @@ class LMSPlayer(LMSUtils):
         If amount is None, all playlist tracks will be returned.
 
         If not taglist is provided, the default list is:
-        [tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]
+        [tags.ARTIST, tags.COVERID, tags.DURATION, tags.COVERART, \
+        tags.ARTWORK_URL, tags.ALBUM, tags.REMOTE, tags.ARTWORK_TRACK_ID]
 
         ::
 
@@ -506,9 +543,11 @@ class LMSPlayer(LMSUtils):
             taglist = DETAILED_TAGS
         return self.playlist_get_info(start=start,
                                       amount=amount,
-                                      taglist=taglist)
+                                      taglist=taglist,
+                                      local_art=local_art)
 
-    def playlist_get_info(self, taglist=None, start=None, amount=None):
+    def playlist_get_info(self, taglist=None, start=None, amount=None,
+                          local_art=True):
         """
         :type start: int
         :param start: playlist index of first track to query
@@ -516,10 +555,13 @@ class LMSPlayer(LMSUtils):
         :param amount: number of tracks to query
         :type taglist: list
         :param taglist: list of tags (NEED LINK)
+        :type local_art: bool
+        :param local_art: generate URL for local tracks
         :rtype: list
         :returns: server result
 
-        If start is None, results will start with the first track in the playlist.
+        If start is None, results will start with the first track in the \
+        playlist.
 
         If amount is None, all playlist tracks will be returned.
 
@@ -537,16 +579,35 @@ class LMSPlayer(LMSUtils):
         if amount is None:
             amount = self.track_count
 
+        # We need to see if we want to get local artwork url
+        # But we should only do this if the user has requested ARTWORK_URL
+        if taglist and tags.ARTWORK_URL in taglist and local_art:
+            reqs = [tags.REMOTE, tags.ARTWORK_TRACK_ID, tags.COVERART]
+            for req in reqs:
+                if req not in taglist:
+                    taglist += req
+            update_art = True
+        else:
+            update_art = False
+
         if start is None:
             start = 0
 
-        tags = " tags:{}".format(",".join(taglist)) if taglist else ""
-        command = "status {} {} {}".format(start, amount, tags)
+        tagstr = " tags:{}".format(",".join(taglist)) if taglist else ""
+        command = "status {} {} {}".format(start, amount, tagstr)
 
         try:
-            return self.parse_request(command, "playlist_loop")
+            info =  self.parse_request(command, "playlist_loop")
         except:
-            return []
+            info = []
+
+        # If we're getting local art then we just need to edit local tracks
+        if update_art:
+            for track in info:
+                if not int(track["remote"]):
+                    track[u"artwork_url"] = self._art.getURL(track)
+
+        return info
 
     def playlist_play(self, item):
         """

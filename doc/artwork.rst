@@ -3,8 +3,8 @@ Artwork
 
 .. NOTE::
 
-    There is limited documentation for this class as it is expected that the \
-    functionality will be added to the LMSPlayer class.
-
+    It is anticipated that the artwork information will be retrieved via the \
+    :class:`LMSPlayer <LMSTools.player.LMSPlayer>` object.
+    
 .. automodule:: LMSTools.artworkresolver
    :members:
