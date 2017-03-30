@@ -14,6 +14,31 @@ is to create a server object.
     # create the server object
     server = LMSServer(SERVER_IP)
 
+Discovering servers
+-------------------
+
+If you don't know the address of your server you can use the \
+:class:`LMSDiscovery <LMSTools.discovery.LMSDiscovery>` class to find servers.
+
+.. code-block:: python
+
+    from LMSTools import LMSServer, LMSDiscovery
+
+    # Find servers
+    servers = LMSDiscovery().all()
+
+    if servers:
+
+        # Get the details of the server
+        SERVER_IP = servers[0]["host"]
+        SERVER_PORT = servers[0]["port"]
+
+        # create the server object
+        server = LMSServer(SERVER_IP)
+
+What now?
+---------
+
 At this point, you can test if your connection works by running the Ping \
 method.
 

@@ -10,3 +10,4 @@ Module documentation
    menus
    tags
    artwork
+   discovery
