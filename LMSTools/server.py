@@ -84,6 +84,19 @@ class LMSServer(object):
             self.players.append(player)
         return self.players
 
+    def get_player_from_ref(self, ref):
+        """
+        :rtype: LMSPlayer
+        :returns: Instance of player with specified MAC address (or None if \
+        player not found)
+
+        Get a player instance based on the provided MAC address.
+        """
+        try:
+            return LMSPlayer(ref, self)
+        except AttributeError:
+            return None
+
     def get_player_count(self):
         """
         :rtype: int
@@ -117,8 +130,11 @@ class LMSServer(object):
         syncgroups = [x.get("sync_members","").split(",") for x in groups.get("syncgroups_loop",dict())]
         return syncgroups
 
-    def show_players_sync_status(self):
+    def show_players_sync_status(self, get_players=False):
         """
+        :param get_players: bool
+        :param get_players: (optional) return instance of LMSPlayer (default \
+        False)
         :rtype: dict
         :returns: dictionary (see attributes below)
         :attr group_count: (int) Number of sync groups
@@ -130,6 +146,7 @@ class LMSServer(object):
         :attr name: Name of player
         :attr ref: Player reference
         :attr sync_index: Index of sync group (-1 if not synced)
+        :attr player: LMSPlayer instance (only if 'get_players' set to True)
 
         ::
 
@@ -161,6 +178,8 @@ class LMSServer(object):
                 item["sync_index"] = index[0]
             else:
                 item["sync_index"] = -1
+            if get_players:
+                item["player"] = player
             all_players.append(item)
 
         sync_status = {}
