@@ -85,8 +85,8 @@ class LMSPlayer(LMSUtils):
         try:
             return self.ref == other.ref
         except AttributeError:
-            if type(other) == str:
-                return self.ref.lower() == other.lower()
+            if type(other) in (str, unicode):
+                return self.ref.lower() == str(other).lower()
             else:
                 return False
 
