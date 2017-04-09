@@ -30,7 +30,7 @@ The first part of the payload is the reference of the player, the remaining \
 part is the relevant event.
 
 If you need to check whether the event matches a specific player you can \
-check equivalence via the :attr:`ref <LMSTools.player.LMSPlayer.ref>` propert \
+check equivalence via the :attr:`ref <LMSTools.player.LMSPlayer.ref>` property \
 or just compare the player reference received with the player object. e.g.:
 
 .. code-block:: python

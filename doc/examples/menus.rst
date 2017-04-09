@@ -25,7 +25,7 @@ own interfaces in your applications.
 
 An example menu (running in a Kodi script):
 
-.. image:: screenshots/menu.png
+.. image:: ../screenshots/menu.png
   :scale: 50 %
 
 Understanding the menu system
