@@ -49,7 +49,7 @@ Using the callbackserver
 Callbacks can be configured in two different ways:
 
 1) Using decorators_
-2) Using the 'add_callback_' method
+2) Using the add_callback_ method
 
 .. decorators:
 
