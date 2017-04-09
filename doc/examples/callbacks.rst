@@ -43,6 +43,18 @@ or just compare the player reference received with the player object. e.g.:
   >>>event_player == laptop
   True
 
+Alternatively, the player can check the event itself via the \
+:attr:`check_event_player <LMSTools.player.LMSPlayer.check_event_player>` or \
+:attr:`check_event_sync_group <LMSTools.player.LMSPlayer.check_event_sync_group>` \
+methods.
+
+.. code-block:: python
+
+  >>>laptop = LMSPlayer("41:41:41:41:41:41", server)
+  >>>event = "41:41:41:41:41:41 mixer volume -5"
+  >>>laptop.check_event_player(event)
+  True
+
 Using the callbackserver
 ------------------------
 
