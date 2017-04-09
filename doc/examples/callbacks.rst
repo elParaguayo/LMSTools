@@ -103,7 +103,7 @@ Or by passing events as a list
     def generic_event(event=None):
         print "Event received: {}".format(event)
 
-.. add_callback:
+.. _add_callback:
 
 Using 'add_callback' method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
