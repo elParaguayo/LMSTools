@@ -19,6 +19,10 @@ DETAILED_TAGS = [tags.ARTIST,
                  tags.ARTWORK_TRACK_ID]
 
 
+class LMSPlayerError(Exception):
+    pass
+
+
 class LMSPlayer(LMSUtils):
     """
     The LMSPlayer class represents an individual squeeze player connected to
@@ -801,3 +805,38 @@ class LMSPlayer(LMSUtils):
 
             else:
                 return [LMSPlayer(ref, self.server) for ref in sync.split(",")]
+
+    def check_event_player(self, event):
+        """
+        :type event: str
+        :param event: event payload received from server
+        :rtype: bool
+        :returns: True if event belongs to the player.
+
+        Check if an event payload belongs to the current player.
+        """
+        try:
+            event_player = event.split(" ")[0]
+        except AttributeError:
+            raise LMSPlayerError("Invalid event received.")
+
+        return event_player == self.ref
+
+    def check_event_sync_group(self, event):
+        """
+        :type event: str
+        :param event: event payload received from server
+        :rtype: bool
+        :returns: True if event belongs to the player or a player in the same \
+        sync group as the current player.
+
+        Check if an event payload belongs to the current player or a player in \
+        the same sync group as the current player..
+        """
+        try:
+            event_player = event.split(" ")[0]
+        except AttributeError:
+            raise LMSPlayerError("Invalid event received.")
+
+        return any((event_player == self.ref,
+                    event_player in self.get_synced_players()))
