@@ -1,12 +1,60 @@
+Callback server
+===============
+
+LMSCallbackServer provides a mechanism for subscribing to event notifications \
+from the server and triggering callback functions based on the type of event \
+received.
+
+The server subclasses the python threading so that the server can be run in \
+the background.
+
+Event notifications
+-------------------
+
+The callback server will send a single parameter to the callback function. \
+This parameter is the event payload. Therefore any method that is to be used \
+as a callback function should be able to accept (and handle) this payload.
+
+Notification payload
+--------------------
+
+The payload is a single string and must be parsed by your callback function.
+
+An example payload looks like this:
+
+::
+
+  41:41:41:41:41:41 mixer volume -5
+
+The first part of the payload is the reference of the player, the remaining \
+part is the relevant event.
+
+If you need to check whether the event matches a specific player you can \
+check equivalence via the :attr:`ref <LMSTools.player.LMSPlayer.ref>` propert \
+or just compare the player reference received with the player object. e.g.:
+
+.. code-block:: python
+
+  >>>laptop = LMSPlayer("41:41:41:41:41:41", server)
+  >>>event = "41:41:41:41:41:41 mixer volume -5"
+  >>>event_player = event.split(" ")[0]
+  >>>event_player == laptop.ref
+  True
+  >>>event_player == laptop
+  True
+
 Using the callbackserver
-========================
+------------------------
 
 Callbacks can be configured in two different ways:
 
-1) Using decorators
-2) Using the 'add_callback' method
+1) Using decorators_
+2) Using the 'add_callback_' method
 
-**Decorators**
+.. decorators:
+
+Decorators
+~~~~~~~~~~
 
 .. code-block:: python
 
@@ -55,7 +103,10 @@ Or by passing events as a list
     def generic_event(event=None):
         print "Event received: {}".format(event)
 
-**Using 'add_callback' method**
+.. add_callback:
+
+Using 'add_callback' method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 

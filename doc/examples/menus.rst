@@ -1,11 +1,7 @@
 Generating player menus
 =======================
 
-The :class:`LMSMenuHandler <LMSTools.menu.LMSMenuHandler>` class allows you \
-to generate squeezeplayer menus on the fly. This will allow you to create your \
-own interfaces in your applications.
-
-.. NOTE::
+.. IMPORTANT::
 
     This code is a work in progress and may therefore lack some of the \
     functionality that you may encounter on more 'professional' applications.
@@ -13,6 +9,24 @@ own interfaces in your applications.
     If there is some functionality that is missing (or the code otherwise \
     works in unexpected ways) then please notify me in the \
     `GitHub issues tracker <https://github.com/elParaguayo/LMSTools/issues>`_.
+
+
+The :class:`LMSMenuHandler <LMSTools.menu.LMSMenuHandler>` class allows you \
+to generate squeezeplayer menus on the fly. This will allow you to create your \
+own interfaces in your applications.
+
+.. NOTE::
+
+    The purpose of this class is to allow you to generate menus for your own \
+    applications.
+
+    It does **not** generate menus for hardware squeezeplayers i.e. these are \
+    still provided by the server.
+
+An example menu (running in a Kodi script):
+
+.. image:: screenshots/menu.png
+  :scale: 50 %
 
 Understanding the menu system
 -----------------------------
