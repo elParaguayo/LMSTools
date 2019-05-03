@@ -250,7 +250,34 @@ class LMSPlayer(LMSUtils):
         :returns: model name of the current player.
         """
         return self._model
+      
+    @property
+    def power(self):
+        """
+        Player power state.
+        
+        :getter: retrieve power state of player
+        :rtype: bool
+        :returns: True if on, False if off
+        
+        :setter: set power state of player on server(True = On)
+        """
+        if self.parse_request("power ?", "_power") == "1":
+            return True
+        else:
+            return False
 
+    @power.setter
+    def power(self, power):
+        try:
+            if power == True:
+                self.request("power {}".format("1"))
+            elif power == False:
+                self.request("power {}".format("0"))
+            self._power = power
+        except:
+            pass
+      
     @property
     def mode(self):
         """
