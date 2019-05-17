@@ -1,4 +1,4 @@
-** Note: this project is no longer active maintenance/development.**
+**Note: this project is no longer active maintenance/development.**
 
 LMSTools
 ========
