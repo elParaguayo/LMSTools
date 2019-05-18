@@ -2,7 +2,7 @@
 Simple python class definitions for interacting with Logitech Media Server.
 This code uses the JSON interface.
 """
-import urllib2
+import urllib.request, urllib.error
 import json
 
 from .player import LMSPlayer
@@ -40,7 +40,7 @@ class LMSServer(object):
         :param params: Request command
 
         """
-        req = urllib2.Request(self.url)
+        req = urllib.request.Request(self.url)
         req.add_header('Content-Type', 'application/json')
 
         if type(params) == str:
@@ -53,11 +53,11 @@ class LMSServer(object):
                 "params": cmd}
 
         try:
-            response = urllib2.urlopen(req, json.dumps(data))
+            response = urllib.request.urlopen(req, json.dumps(data).encode())
             self.id += 1
             return json.loads(response.read())["result"]
 
-        except urllib2.URLError:
+        except urllib.error.URLError:
             raise LMSConnectionError("Could not connect to server.")
 
         except:
