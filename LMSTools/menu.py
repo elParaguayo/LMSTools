@@ -1,6 +1,6 @@
 import json
 
-from menuitems import (NextMenuItem,
+from .menuitems import (NextMenuItem,
                        PlaylistMenuItem,
                        SearchMenuItem,
                        AudioMenuItem)

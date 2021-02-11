@@ -72,14 +72,14 @@ class LMSDiscovery(object):
         sock.bind(('', 0))
 
         try:
-            sock.sendto(lms_msg, (lms_ip, lms_port))
+            sock.sendto(lms_msg.encode(), (lms_ip, lms_port))
 
             while True:
                 try:
                     data, server = sock.recvfrom(1024)
-		    host, _ = server
+                    host, _ = server
                     if data.startswith(b'E'):
-                        port = data.split("\x04")[1]
+                        port = data.split("\x04".encode())[1]
                         entries.append({'port': int(port),
                                         'data': data,
                                         'from': server,

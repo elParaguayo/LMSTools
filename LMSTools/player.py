@@ -4,9 +4,9 @@
 #
 # This set of tools was inspired by the PyLMS library.
 
-from artworkresolver import LMSArtworkResolver
-from tags import LMSTags as tags
-from utils import LMSUtils
+from .artworkresolver import LMSArtworkResolver
+from .tags import LMSTags as tags
+from .utils import LMSUtils
 
 
 DETAILED_TAGS = [tags.ARTIST,
