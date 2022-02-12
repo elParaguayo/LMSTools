@@ -51,3 +51,13 @@ Pretty unexciting though, isn't it?
 
 That's because you know it's not the server that really matters, it's the \
 players. So let's see how they work in the next section: :ref:`player-example`.
+
+Authentication
+--------------
+
+If your server requires authentication, you can add that into your initial \
+server request.
+
+::
+
+  >>>server = LMSServer(SERVER_IP, username='username', password='password')
