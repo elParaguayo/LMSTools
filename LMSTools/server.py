@@ -19,6 +19,10 @@ class LMSServer(object):
     :param host: address of LMS server (default "localhost")
     :type port: int
     :param port: port for the web interface (default 9000)
+    :type username: str
+    :param username: username for accessing the server
+    :type password: str
+    :param password: password for accessing the server
 
     Class for Logitech Media Server.
     Provides access via JSON interface. As the class uses the JSON interface, no active connections are maintained.
