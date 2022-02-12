@@ -4,6 +4,7 @@ This code uses the JSON interface.
 """
 import urllib.request, urllib.error
 import json
+import base64
 
 from .player import LMSPlayer
 
@@ -18,19 +19,26 @@ class LMSServer(object):
     :param host: address of LMS server (default "localhost")
     :type port: int
     :param port: port for the web interface (default 9000)
+    :type username: str
+    :param username: username for accessing the server
+    :type password: str
+    :param password: password for accessing the server
 
     Class for Logitech Media Server.
     Provides access via JSON interface. As the class uses the JSON interface, no active connections are maintained.
 
     """
 
-    def __init__(self, host="localhost", port=9000):
+    def __init__(self, host="localhost", port=9000, username=None, password=None):
         self.host = host
         self.port = port
         self._version = None
         self.id = 1
         self.web = "http://{h}:{p}/".format(h=host, p=port)
         self.url = "http://{h}:{p}/jsonrpc.js".format(h=host, p=port)
+        if username and password:
+            self.auth = base64.b64encode(bytes('{u}:{p}'.format(u=username, p=password),'ascii'))
+        else: self.auth = None
 
     def request(self, player="-", params=None):
         """
@@ -42,6 +50,9 @@ class LMSServer(object):
         """
         req = urllib.request.Request(self.url)
         req.add_header('Content-Type', 'application/json')
+
+        if self.auth:
+            req.add_header("Authorization", "Basic {}".format(self.auth.decode('utf-8')))
 
         if type(params) == str:
             params = params.split()
